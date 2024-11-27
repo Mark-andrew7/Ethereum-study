@@ -5,10 +5,12 @@ contract SimpleStorage {
     uint256 public favouriteNumber;
     People public person = People({favouriteNumber: 2, name: "Mark"});
 
-    Struct People {
+    struct People {
         uint256 favouriteNumber;
         string name;
     }
+
+    People[] public people;
 
     function store(uint256 _favouriteNumber) public {
         favouriteNumber = _favouriteNumber;
@@ -17,6 +19,12 @@ contract SimpleStorage {
 
     function retrieve() public view returns(uint256) {
         return favouriteNumber;
+    }
+
+    function addPerson(string memory _name, uint256 _favouriteNumber) public {
+        People memory newPerson = People({favouriteNumber: _favouriteNumber, name: _name});
+        people.push(newPerson);
+
     }
 }
 
